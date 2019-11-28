@@ -38,6 +38,8 @@ public class TechJobs {
                 String columnChoice = getUserSelection("List", columnChoices);
 
                 if (columnChoice.equals("all")) {
+
+                    //print jobs first mentioned here
                     printJobs(JobData.findAll());
                 } else {
 
@@ -61,7 +63,12 @@ public class TechJobs {
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
-                    System.out.println("Search all fields not yet implemented.");
+
+                    //here I am looking for a term
+                    System.out.println("I am looking for " +  searchTerm);
+                    // pass searchTerm to my new function.
+                    // my new function return a list of jobs. OK?
+                    printJobs(JobData.findByValue(searchTerm.toLowerCase()));
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
                 }
@@ -108,9 +115,41 @@ public class TechJobs {
         return choiceKeys[choiceIdx];
     }
 
-    // Print a list of jobs
+    //code here
+    // found hashmap outline in debugger for someJobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
-        System.out.println("printJobs is not implemented yet");
+        // someJobs is a list of 98 items.
+        // each item is a HashMap.
+        // each Hashmap has 5 atributes, position, name, employer...
+
+        // left to right position >> key   -    ex: position type is key, name is a key
+
+        // first check if someJobs is empty
+        if(someJobs.size() == 0){
+            //if size is 0 I print
+            System.out.println("No Results");
+        }
+        //then loop thru all of  someJobs
+        for (int i = 0; i < someJobs.size(); i++){
+            //for each somejobs, I have a hashset, so for example someJobs.get(2) is a hashset
+            // for example:
+            // { "position type" => Web Fullstack
+            //  "name" => Full Stack Engineer
+            //
+
+            //so if I get hashset.get(name) I get the name.
+
+            //  doing someJobs.get(i).get("position type"))
+            /// I search for someJob in position i, the "position type". Position Type from the hashset prints.
+
+            System.out.println("************");
+            System.out.println("position type: " + someJobs.get(i).get("position type"));
+            System.out.println("name: " + someJobs.get(i).get("name"));
+            System.out.println("employer: " + someJobs.get(i).get("employer"));
+            System.out.println("location: " + someJobs.get(i).get("location"));
+            System.out.println("core competency: " + someJobs.get(i).get("core competency"));
+            System.out.println("************");
+        }
     }
 }

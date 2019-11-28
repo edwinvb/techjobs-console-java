@@ -125,4 +125,29 @@ public class JobData {
         }
     }
 
+    //This is the function,
+    public static ArrayList<HashMap<String, String>> findByValue(String searchTerm){
+        loadData();   // stuck on this for quite some time >> Finally looking at other code in file >>> add loadData to method
+
+        // Crate an empty list to save the jobs
+        // example is term is WEB, Full Stack Web and ruby
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+0
+
+
+
+        //Googled for method and checked debugger for keys and looked up for term "row"
+        //***REMEMBER>>> YOU GOT STUCK DOING row.add !!!! SYNTAX ALWAYS
+        for (HashMap<String, String> row : allJobs) {
+            if(row.get("position type").equalsIgnoreCase(searchTerm) ||
+                    row.get("name").equalsIgnoreCase(searchTerm) ||
+                    row.get("employer").equalsIgnoreCase(searchTerm) ||
+                    row.get("location").equalsIgnoreCase(searchTerm) ||
+                    row.get("core competency").equalsIgnoreCase(searchTerm)){
+                jobs.add(row);
+            }
+        }
+        return jobs;
+    }
+
 }
